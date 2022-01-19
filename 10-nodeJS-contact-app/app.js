@@ -1,12 +1,32 @@
-const { tulisPertanyaan, simpanContact } = require("./contacts");
+import yargs from "yargs";
+import { hideBin } from "yargs/helpers";
 
-// pertanyaan di atas kemudian di panggil dengan menggunakan asycn & await
-const main = async () => {
-  const nama = await tulisPertanyaan("Masukkan nama anda : ");
-  const email = await tulisPertanyaan("Masukkan email anda : ");
-  const noHP = await tulisPertanyaan("Masukkan No HP anda : ");
+import simpanContact from "./contacts.js";
 
-  simpanContact(nama, email, noHP);
-};
-
-main();
+// mengambil argument dari command line
+yargs(hideBin(process.argv))
+  .command({
+    command: "add",
+    describe: "Menambahkan contact baru",
+    builder: {
+      nama: {
+        describe: "Nama lengkap",
+        demandOption: true,
+        type: "string",
+      },
+      email: {
+        describe: "Email",
+        demandOption: true,
+        type: "string",
+      },
+      nohp: {
+        describe: "Nomor Handphone",
+        demandOption: true,
+        type: "string",
+      },
+    },
+    handler(argv) {
+      simpanContact(argv.nama, argv.email, argv.nohp);
+    },
+  })
+  .parse();
