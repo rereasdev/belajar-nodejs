@@ -1,7 +1,12 @@
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
 
-import simpanContact from "./contacts.js";
+import {
+  simpanContact,
+  listContact,
+  listDetailContact,
+  deleteContact,
+} from "./contacts.js";
 
 // mengambil argument dari command line
 yargs(hideBin(process.argv))
@@ -16,7 +21,7 @@ yargs(hideBin(process.argv))
       },
       email: {
         describe: "Email",
-        demandOption: true,
+        demandOption: false,
         type: "string",
       },
       nohp: {
@@ -27,6 +32,55 @@ yargs(hideBin(process.argv))
     },
     handler(argv) {
       simpanContact(argv.nama, argv.email, argv.nohp);
+    },
+  })
+  .demandCommand()
+  .parse();
+
+// menamplikan semua nama & no HP daftar contact
+yargs(hideBin(process.argv))
+  .command({
+    command: "list",
+    describe: "Menampilkan semua Nama dan Nomor HP di daftar Contact",
+    builder: {},
+    handler() {
+      listContact();
+    },
+  })
+  .parse();
+
+//menampikan detail contact berdasarkan nama
+yargs(hideBin(process.argv))
+  .command({
+    command: "detail",
+    describe: "Menampilkan Detail di daftar Contact berdasarkan Nama",
+    builder: {
+      nama: {
+        describe: "Nama lengkap",
+        demandOption: true,
+        type: "string",
+      },
+    },
+    handler(argv) {
+      listDetailContact(argv.nama);
+    },
+  })
+  .parse();
+
+//menghapus contact berdasarkan nama
+yargs(hideBin(process.argv))
+  .command({
+    command: "remove",
+    describe: "Menghapus Contact berdasarkan Nama",
+    builder: {
+      nama: {
+        describe: "Nama lengkap",
+        demandOption: true,
+        type: "string",
+      },
+    },
+    handler(argv) {
+      deleteContact(argv.nama);
     },
   })
   .parse();
