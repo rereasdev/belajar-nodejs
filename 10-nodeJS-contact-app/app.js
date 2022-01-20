@@ -34,11 +34,7 @@ yargs(hideBin(process.argv))
       simpanContact(argv.nama, argv.email, argv.nohp);
     },
   })
-  .demandCommand()
-  .parse();
-
-// menamplikan semua nama & no HP daftar contact
-yargs(hideBin(process.argv))
+  // menamplikan semua nama & no HP daftar contact
   .command({
     command: "list",
     describe: "Menampilkan semua Nama dan Nomor HP di daftar Contact",
@@ -47,10 +43,7 @@ yargs(hideBin(process.argv))
       listContact();
     },
   })
-  .parse();
-
-//menampikan detail contact berdasarkan nama
-yargs(hideBin(process.argv))
+  // menampikan detail contact berdasarkan nama
   .command({
     command: "detail",
     describe: "Menampilkan Detail di daftar Contact berdasarkan Nama",
@@ -65,10 +58,7 @@ yargs(hideBin(process.argv))
       listDetailContact(argv.nama);
     },
   })
-  .parse();
-
-//menghapus contact berdasarkan nama
-yargs(hideBin(process.argv))
+  // menghapus contact berdasarkan nama
   .command({
     command: "remove",
     describe: "Menghapus Contact berdasarkan Nama",
@@ -83,4 +73,5 @@ yargs(hideBin(process.argv))
       deleteContact(argv.nama);
     },
   })
+  .demandCommand()
   .parse();
