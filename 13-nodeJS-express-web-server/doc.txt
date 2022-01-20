@@ -1,0 +1,17 @@
+ExpressJS
+    - Web App Framework yang dibuat di atas NodeJS
+    - Menyedikan antarmukan yang minimal untuk kelas yang diperlukan dalama membuat sebuah aplikasi
+    - membantu pengelolaan aliran data dari server ke aplikasi
+    - MERN, MEAN, MEVN Stack (MongoDB, ExpressJS, (React, Angular, Vue), NodeJS)
+
+Fitur ExpressJS
+    - Menangani request dengan berbagai metode HTPP dengan mudah (Routes)
+    - MVC (Model View Controler)
+    - Terintegrasi dengan 'view' rendering engine untuk mengelola template (Templating System)
+    - Middleware
+
+Unopinionated
+    - Tidak ada aturan baku untuk membuat seuatu (diberi kebebasan)
+    - Fleksibel
+    - Menentukans endiri struktur aplikasi
+    - Bongkar pasang Middleware
